@@ -8,6 +8,7 @@ import com.miaoshaproject.service.UserService;
 import com.miaoshaproject.service.model.UserModel;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,6 +27,7 @@ import java.security.NoSuchAlgorithmException;
  */
 @RestController
 @RequestMapping("/user")
+@CrossOrigin(allowCredentials = "true",allowedHeaders = "*")
 public class UserController {
 
     @Autowired

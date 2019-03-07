@@ -12,6 +12,7 @@ import com.miaoshaproject.validator.ValidationResult;
 import com.miaoshaproject.validator.ValidatorImpl;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
 /**
@@ -48,8 +49,13 @@ public class UserServiceImpl implements UserService {
 
         UserDo userDo = convertUserModel2UserDo(userModel);
 
-        userDoMapper.insertSelective(userDo);
-//        userDoMapper.insert(userDo);
+        try {
+
+            userDoMapper.insertSelective(userDo);
+        }catch (DuplicateKeyException ex){
+            throw  new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR,"该手机号已存在！");
+        }
+
 
         //设置id
         userModel.setId(userDo.getId());

@@ -32,9 +32,10 @@
                 return false;
             }
 
-            $ajax({
+            $.ajax({
+                url:"http://localhost:8090/user/getOpt",
                 type:"POST",
-                contentType:"application/x-wwww.form.urlencoded",
+                contenttype:"application/x-wwww.form.urlencoded",
                 data:{
                     "telephone":tel
                 },
